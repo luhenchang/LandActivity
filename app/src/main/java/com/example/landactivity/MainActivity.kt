@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         helloView = findViewById<TextView>(R.id.helloId)
     }
-    
+
     fun goToScreenActivity(view: View) {
         helloView.postDelayed({
             val fullScreenIntent = Intent(this, ScreenOrientationActivity::class.java)
