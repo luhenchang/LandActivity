@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.landactivity" >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.landactivity">
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:directBootAware="true"
+        android:exported="false"
+        android:fullBackupOnly="true"
+        android:killAfterRestore="false"
+        android:requestLegacyExternalStorage="true"
+        android:requiredForAllUsers="true"
+        android:resizeableActivity="true"
+        android:restoreAnyVersion="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LandActivity" >
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode"
+        tools:replace="android:label">
         <activity
             android:name=".ScreenOrientationActivity"
-            android:allowTaskReparenting="true"
-            android:directBootAware="true"
-            android:excludeFromRecents="true"
-            android:screenOrientation="portrait"
-            android:showOnLockScreen="true"
-            android:exported="false"
-            android:taskAffinity="com.klinker.deskclock"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:exported="true"
+            android:showOnLockScreen="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:showOnLockScreen="true"
-            android:screenOrientation="landscape" >
+            android:showOnLockScreen="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

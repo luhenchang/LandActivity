@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cta_items_title">
+        <item>存取本機錄音</item>
+        <item>勿扰权限</item>
+        <item>网络权限</item>
+    </string-array>
+    <string-array name="cta_items_msg">
+        <item>使用录音功能录制声音</item>
+        <item>录音需要勿扰权限</item>
+        <item>上传服务器网络权限</item>
+    </string-array>
+</resources>
