@@ -4,6 +4,20 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/wangfeiwangfei/wangfei/GitHub/LandActivity/release.keystore')
+            storePassword 'android'
+            keyAlias 'release'
+            keyPassword 'android'
+        }
+        release {
+            storeFile file('/Users/wangfeiwangfei/wangfei/GitHub/LandActivity/debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+    }
     compileSdk 31
 
     defaultConfig {

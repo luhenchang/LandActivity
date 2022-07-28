@@ -2,9 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.landactivity">
+
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
+
+    <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
+
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +32,7 @@
         android:resizeableActivity="true"
         android:restoreAnyVersion="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:theme="@style/LeCalendarTheme.AppCompat"
         tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode"
         tools:replace="android:label">
         <activity
@@ -29,13 +42,46 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:resumeWhilePausing="true"
+            android:screenOrientation="user"
             android:showOnLockScreen="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
+        <receiver
+            android:name=".TimerReceiver"
+            android:directBootAware="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="times_up" />
+                <action android:name="notif_in_use_show" />
+                <action android:name="notif_times_up_reset" />
+                <action android:name="notif_auto_stop_ringing" />
+                <action android:name="com.android.deskclock.ALARM_ALERT" />
+                <action android:name="start_timer" />
+                <action android:name="delete_timer" />
+                <action android:name="timer_stop" />
+                <action android:name="timer_reset" />
+                <action android:name="timer_done" />
+                <action android:name="timer_update" />
+                <action android:name="notif_in_use_cancel" />
+                <action android:name="notif_times_up_stop" />
+                <action android:name="notif_times_up_plus_one" />
+                <action android:name="notif_times_up_show" />
+                <action android:name="notif_times_up_cancel" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name=".mibandreader.LeService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

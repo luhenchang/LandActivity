@@ -7,8 +7,11 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.165" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.165" />
         <entry key="app/src/main/res/layout-land/activity_screen_orientation.xml" value="0.22522522522522523" />
+        <entry key="app/src/main/res/layout/actionbar_indeterminate_progress.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.34668121337890623" />
+        <entry key="app/src/main/res/layout/activity_mi_band_reader.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/activity_screen_orientation.xml" value="0.18958333333333333" />
+        <entry key="app/src/main/res/xml/shortcuts.xml" value="0.21041666666666667" />
       </map>
     </option>
   </component>

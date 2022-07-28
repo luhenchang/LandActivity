@@ -13,6 +13,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="LeCalendarTheme.AppCompat" parent="@style/Theme.AppCompat.Zui.NoActionBar">
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">#ffffff</item>
+    </style>
     <style name="AppBaseTheme" parent="Theme.AppCompat.Zui.NoActionBar">
         <!--
             Theme customizations available in newer API levels can go in
@@ -24,5 +30,13 @@
         <item name="android:windowDisablePreview">false</item>
         <item name="android:navigationBarColor">@color/background_zui</item>
 
+    </style>
+
+    <style name="LeCalendarTheme" parent="@style/AppBaseTheme">
+    </style>
+    <style name="LeCalendarTheme.NoTitle">
+    </style>
+
+    <style name="LeCalendarTheme.NoTitle.AllInOne">
     </style>
 </resources>

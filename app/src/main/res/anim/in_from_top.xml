@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <translate android:fromYDelta="0%p" android:toYDelta="0%p"
+            android:duration="@android:integer/config_shortAnimTime"/>
+    <!--<alpha android:fromAlpha="0.0" android:toAlpha="1.0"
+            android:duration="@android:integer/config_shortAnimTime" />-->
+</set>
+
+<!--<set xmlns:android="http://schemas.android.com/apk/res/android"
+android:background="#ff000000" android:zAdjustment="normal">
+<alpha android:fromAlpha="0.3" android:toAlpha="1.0"
+    android:fillEnabled="true" android:fillBefore="true" android:fillAfter="true"
+    android:interpolator="@interpolator/accelerate_quart"
+    android:duration="300"/>
+<translate android:fromYDelta="-35%" android:toYDelta="0"
+    android:interpolator="@interpolator/accelerate_quart"
+    android:fillEnabled="true" android:fillBefore="true" android:fillAfter="true"
+    android:duration="300"/>
+</set>-->
