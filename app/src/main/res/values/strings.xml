@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LandActivity</string>
+    <string name="hello_name" >You have device, Please enable them under Setting -> Apps -> Recorder -> Premissions</string>
+    <string name="hello_title" >You have device, Please enable them under <b>Setting -> Apps -> Recorder -> Premissions</b></string>
 </resources>

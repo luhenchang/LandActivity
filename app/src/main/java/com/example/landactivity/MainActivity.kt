@@ -1,14 +1,15 @@
 package com.example.landactivity
 
-import android.content.DialogInterface
+import android.content.DialogInterface.*
 import android.content.Intent
 import android.os.Bundle
-import android.view.KeyEvent
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
-import android.widget.CompoundButton
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
 import zui.app.MessageDialog
+import zui.app.MessageDialog.TYPE_TEXTINPUT
 
 class MainActivity : AppCompatActivity() {
     private val ACTION_SCIENCE = "com.example.landactivity.SCIENCE"
@@ -16,84 +17,115 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
+        //intent.data = Uri.parse("package:$packageName")
+        //startActivityForResult(intent, 101) //GET_DIALOG_PERMISSION为预先定义好的返回结果常量
+
 //        val isActionScience = ACTION_SCIENCE == intent.action
 //        if (isActionScience) {
 //            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 //        }
     }
 
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        //showPowerDialogIfNeeded()
-    }
-    //需要获取访问本地录音权限的dialog
-    private fun showPowerDialogIfNeeded() {
-        val checkedChangeListener =
-            CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-                {
 
-                }
-            }
-        val listener =
-            DialogInterface.OnClickListener { dialog, which ->
-                when (which) {
-                    DialogInterface.BUTTON_POSITIVE -> {
-
-                    }
-                    DialogInterface.BUTTON_NEGATIVE -> {
-                    }
-                }
-            }
-        val builder: MessageDialog.Builder = MessageDialog.Builder(this)
-            .setTitle("录音机权限")
-            .setMessageDialogType(MessageDialog.TYPE_PERMISSION)
-            .setCheckMessage("再次统一么？", true)
-            .setOnCheckedChangeListener(checkedChangeListener)
-            .addGroup("网络权限统一福", 0)
-            .addPairedItem2Group(
-                0,
-                "访问网络",
-                "访问日历信息",
-                AppCompatResources.getDrawable(this, R.drawable.ic_launcher_foreground)
-            ).addPairedItem2Group(
-                0,
-                "访问日历",
-                "访问日历信息",
-                AppCompatResources.getDrawable(this, R.drawable.ic_launcher_foreground)
-            )
-            .addPairedItem2Group(
-                0,
-                "访问储存设备",
-                "读取内测中的设备日历相关日志",
-                AppCompatResources.getDrawable(this, R.drawable.ic_launcher_foreground)
-            ).setPositiveButton("同意", listener)
-            .setNegativeButton("取消", listener)
-//        val titles = resources.getStringArray(R.array.cta_items_title)
-//        val msgs = resources.getStringArray(R.array.cta_items_msg)
-//        for (i in titles.indices) {
-//            builder.addPairedItem2Group(
-//                0,
-//                titles[i],
-//                msgs[i],
-//                getDrawable(R.drawable.ic_launcher_foreground)
-//            )
-//        }
-        val dialog: MessageDialog = builder.create()
-        dialog.setCancelableOnOrientation(false)
-        dialog.setOnKeyListener { _, keyCode, event -> keyCode === KeyEvent.KEYCODE_BACK }
-        dialog.show()
-    }
-
-    fun goToScreenActivity(view: View) {
-        val intent: Intent? = createIntent(TimerConstants.TIMES_UP)?.setClass(
-            this,
-            TimerReceiver::class.java
+    private fun goToDialogShow() {
+     val   labelDialog = MessageDialog.Builder(this, R.style.Theme_Zui_MessageDialog).create()
+        labelDialog.setMessageDialogType(TYPE_TEXTINPUT)
+        labelDialog.setTitle("备注")
+        labelDialog.editorText = ""
+        labelDialog.setEditorHint("请输入")
+        labelDialog.setEditorTextWatcher(mTextWatcher)
+        labelDialog.window!!.setSoftInputMode(
+            WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE
         )
-        sendBroadcast(intent)
-        //requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        labelDialog.setCanceledOnTouchOutside(false)
+        labelDialog.setButton(
+            BUTTON_POSITIVE,
+            "确定"
+        ) { dialog, which ->
+
+        }
+        labelDialog.setButton(
+            BUTTON_NEGATIVE,
+            "关闭",
+        ){ dialog, which ->
+
+        }
+        labelDialog
+            .setOnDismissListener {
+
+            }
+        labelDialog.show()
+        labelDialog.editor.apply {
+            this.requestFocus()
+        }
     }
+    private var mTextWatcher: TextWatcher = object : TextWatcher {
+        override fun onTextChanged(
+            s: CharSequence, start: Int, before: Int,
+            count: Int
+        ) {
+            // TODO Auto-generated method stub
+        }
+
+        override fun beforeTextChanged(
+            s: CharSequence, start: Int, count: Int,
+            after: Int
+        ) {
+            // TODO Auto-generated method stub
+            // mTextView.setText(s);//将输入的内容实时显示
+        }
+
+        override fun afterTextChanged(s: Editable) {
+            // TODO Auto-generated method stub
+            val content = s.toString()
+            if (s.isNotEmpty()) {
+
+            }
+
+            // 当title超过最低30个字节才会去判断是否有中文和英文字符
+            if (s.length > 13) {
+                var deleteStartPosition = 0
+                var dstLength = 0
+                val titleChars = content.toCharArray()
+                for (i in titleChars.indices) {
+                    dstLength++
+                    if (Char(titleChars[i].code.toByte().toUShort()) != titleChars[i]) {
+                        dstLength++
+                    }
+                    if (dstLength >= 27) {
+                        deleteStartPosition = if (Character.isHighSurrogate(s[i - 1]) &&
+                            Character.isLowSurrogate(s[i])
+                        ) {
+                            i - 1
+                        } else {
+                            i
+                        }
+                        break
+                    }
+                }
+                if (deleteStartPosition > 0) {
+                    s.delete(deleteStartPosition, s.length)
+                }
+            }
+        }
+    }
+    fun goToScreenActivity(view: View) {
+        goToDialogShow()
+//        val orientation = resources.configuration.orientation
+//
+//        requestedOrientation = if (orientation == 1) {
+//            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+//
+//        } else {
+//            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+//
+//        }
+        //startActivityForResult(Intent(this,ScreenOrientationActivity::class.java),100)
+    }
+
     private fun createIntent(action: String?): Intent {
-        return Intent().setAction(action).putExtra(TimerConstants.TIMER_INTENT_EXTRA,"111")
+        return Intent().setAction(action).putExtra(TimerConstants.TIMER_INTENT_EXTRA, "111")
     }
 
 }
