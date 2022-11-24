@@ -5,45 +5,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <SeekBar
         android:id="@+id/custom_category_volume_level"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_weight="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/helloId"
-        android:clickable="true"
-        android:onClick="goToScreenActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_name"
+        android:clickable="true"
         android:fontFamily="sans-serif-light"
+        android:onClick="goToScreenActivity"
+        android:text="@string/hello_name"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/helloTile"
-        android:clickable="true"
-        android:onClick="goToScreenActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_title"
+        android:clickable="true"
         android:fontFamily="sans-serif-light"
+        android:onClick="goToScreenActivity"
+        android:text="@string/hello_title"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/helloId" />
+
     <EditText
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        app:layout_constraintTop_toBottomOf="@id/helloId"/>
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/helloId" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
